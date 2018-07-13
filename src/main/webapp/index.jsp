@@ -4,6 +4,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@include file="header.jsp" %>
+<jsp:useBean class="com.sda.jsp.Calculation" id="calc" scope="application"/>
+<jsp:setProperty property="multiplier" name="calc" value="12"/>
 <html>
   <title>
     <% out.print("Hello!!!!!"); %>
@@ -13,14 +15,17 @@
 
     <%-- int value = 10 / 0; --%>
 
-    <jsp:include page="request.jsp"/>
-    <jsp:include page="response.jsp"/>
-    <!--<jsp:include page="forward.jsp"/>-->
-    <jsp:include page="session.jsp"/>
-    <jsp:include page="print.jsp"/>
+    <a href="request.jsp">request</a><br>
+    <a href="response.jsp">response</a><br>
+    <a href="forward.jsp">forward</a><br>
+    <a href="session.jsp">session</a><br>
+    <a href="print.jsp">print</a><br>
+    <a href="forEach.jsp">forEach</a><br>
+    <a href="declaration.jsp">declaration</a><br>
+    <a href="expressionLanguage.jsp">expressionLanguage</a><br>
+    <a href="javaBean.jsp">javaBean</a><br>
+    <a href="coreTags.jsp">coreTags</a><br>
+
     <jsp:include page="application.jsp"/>
-    <jsp:include page="forEach.jsp"/>
-    <jsp:include page="declaration.jsp"/>
-    <jsp:include page="expressionLanguage.jsp"/>
   </body>
 </html>
