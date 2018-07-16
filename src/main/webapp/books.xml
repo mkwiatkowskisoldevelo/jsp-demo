@@ -1,0 +1,12 @@
+<books>
+    <book>
+        <name>Encyklopedia</name>
+        <author>Brzechwa</author>
+        <price>10</price>
+    </book>
+    <book>
+        <name>Janko Muzykant</name>
+        <author>Jaś Fasola</author>
+        <price>12</price>
+    </book>
+</books>
