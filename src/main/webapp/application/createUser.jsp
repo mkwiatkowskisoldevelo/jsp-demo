@@ -1,13 +1,6 @@
 <%@include file="header.jsp" %>
 
-<%
-    if (application.getAttribute("users") == null) {
-        Map<String, String> users = new HashMap<String, String>();
-        application.setAttribute("users", users);
-    }
-%>
-
-<form action="login.jsp" method="post">
+<form action="user.jsp" method="post">
     <div class="form-group">
         <label for="username">Username</label>
         <input class="form-control" type="text" name="username"/>
@@ -16,10 +9,13 @@
         <label for="password">Password</label>
         <input class="form-control" type="password" name="password"/>
     </div>
-    <input class="btn btn-primary" type="submit" value="Log In"/>
+    <div class="form-group">
+        <label for="password">Confirm Password</label>
+        <input class="form-control" type="password" name="passwordConfirm"/>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Create User"/>
     
     <c:out value="${param.errorMessage}"/>
 </form>
-<a class="btn btn-danger" href="createUser.jsp">Sign Up</a>
 
 <%@include file="footer.jsp" %>

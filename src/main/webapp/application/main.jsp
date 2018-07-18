@@ -1,2 +1,5 @@
-<%@ page isELIgnored="false" %>
-<c:out value="${currentUser}">
+<%@include file="header.jsp" %>
+
+<c:out value="${currentUser}"/>
+
+<%@include file="footer.jsp" %>

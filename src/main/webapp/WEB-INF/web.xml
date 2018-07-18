@@ -4,4 +4,17 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>Hello</servlet-name>
+    <servlet-class>com.sda.jsp.HelloJspServlet</servlet-class>
+    <init-param>
+      <param-name>name</param-name>
+      <param-value>some-name</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello</servlet-name>
+    <url-pattern>/hello</url-pattern>
+    <url-pattern>/HelloWorld</url-pattern>
+  </servlet-mapping>
 </web-app>
