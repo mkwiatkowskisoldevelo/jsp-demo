@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
   <servlet>
     <servlet-name>Hello</servlet-name>
     <servlet-class>com.sda.jsp.HelloJspServlet</servlet-class>
@@ -15,6 +16,49 @@
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
     <url-pattern>/hello</url-pattern>
-    <url-pattern>/HelloWorld</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Hello2</servlet-name>
+    <servlet-class>com.sda.jsp.HelloJspServlet</servlet-class>
+    <init-param>
+      <param-name>name</param-name>
+      <param-value>other-name</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello2</servlet-name>
+    <url-pattern>/hello2</url-pattern>
+    <url-pattern>/hello3</url-pattern>
+    <url-pattern>/hello4</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>HelloFilter</filter-name>
+    <filter-class>com.sda.jsp.HelloFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>HelloFilter</filter-name>
+    <url-pattern>/hello</url-pattern>
+    <url-pattern>/hello3</url-pattern>
+    <url-pattern>/hello4</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>Auth</filter-name>
+    <filter-class>com.sda.jsp.AuthenticationFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Auth</filter-name>
+    <url-pattern>/application/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>UserCreation</servlet-name>
+    <servlet-class>com.sda.jsp.UserCreationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCreation</servlet-name>
+    <url-pattern>/sql</url-pattern>
   </servlet-mapping>
 </web-app>
