@@ -34,7 +34,9 @@ public class AuthenticationFilter implements Filter {
         && !url.endsWith("/loginForm.jsp")
         && !url.endsWith("/login.jsp")
         && !url.endsWith("/createUser.jsp")
-        && !url.endsWith("/user.jsp")) {
+        && !url.endsWith("/user.jsp")
+        && !url.endsWith("/createUser")
+        && !url.endsWith("/login")) {
       response.sendRedirect("/demo/application/loginForm.jsp");
     } else {
       filterChain.doFilter(request, response);

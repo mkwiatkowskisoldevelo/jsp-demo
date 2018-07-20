@@ -2,11 +2,7 @@ package com.sda.jsp;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,51 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 public class UserCreationServlet extends HttpServlet {
 
   @Override
-  protected void doGet(
+  protected void doPost(
       HttpServletRequest req,
       HttpServletResponse resp) throws ServletException, IOException {
 
-    PrintWriter out = resp.getWriter();
+    String username = req.getParameter("username");
+    String password = req.getParameter("password");
+    String passwordConfirm = req.getParameter("passwordConfirm");
+    String emailAddress = req.getParameter("emailAddress");
 
-    Connection c = null;
-    Statement s = null;
-    ResultSet rs = null;
+    if (!password.equals(passwordConfirm)) {
+      req.setAttribute("errorMessage", "Given passwords do not match!");
+      resp.sendRedirect("/demo/application/createUser.jsp");
+      return;
+    }
 
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-      c = DriverManager.getConnection(
-          "jdbc:mysql://localhost:3306/spring",
-          "root",
-          "password");
-      s = c.createStatement();
-      rs = s.executeQuery("SELECT * FROM products");
+    UsersDao dao = new UsersDao();
+    String errorMessage = dao.createUser(new User(username, password, emailAddress));
 
-      int index = 0;
-      while (rs.next()) {
-        index++;
-        out.println("Row nr " + index);
-        out.println("id: " + rs.getString(1));
-        out.println("name: " + rs.getString(2));
-        out.println("price: " + rs.getString(3));
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        c.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-      try {
-        s.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-      try {
-        rs.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
+    if (errorMessage != null) {
+      req.setAttribute("errorMessage", errorMessage);
+      resp.sendRedirect("/demo/application/createUser.jsp");
+    } else {
+      resp.sendRedirect("/demo/application/loginForm.jsp");
     }
   }
 }
